@@ -1,29 +1,72 @@
-<form #signupForm="ngForm" (submit)="handleSubmit(signupForm)">
-    <div>
-        <label>Username</label>
-        <input type="text" name="Username" ngModel>
-    </div>
+<div class="form-1">
+    <h2>Template Driven Form</h2>
 
-    <div>
-        <label>Email </label>
-        <input type="email" name="email" ngModel>
-    </div>
+    <form #signupForm="ngForm" (ngSubmit)="handleSubmit(signupForm)" [noValidate]="false">
+        <div class="form-control">
+            <label>Username</label>
+            <input type="text" name="Username" ngModel #name="ngModel"
+                [ngClass]="{'invalid': name.invalid && name.touched}" required>
+        </div>
 
-    <div>
-        <label>Password </label>
-        <input type="password" name="password" ngModel>
-    </div>
+        <small *ngIf="name.invalid && name.touched">Invalid username</small>
 
-    <div>
-        <label>Confirm Password</label>
-        <input type="password" name="confirmPassword"  ngModel>
-    </div>
+        <div class="form-control">
+            <label>Email </label>
+            <input type="email" name="email" ngModel #emailAddress="ngModel"
+                [ngClass]="{'invalid': emailAddress.invalid && emailAddress.touched}" required email>
+        </div>
 
-    <div>
-        <input type="checkbox" name="termsConditions" ngModel>
-        <label>Terms and conditions</label>
-    </div>
+        <small *ngIf="!emailAddress.valid && emailAddress.touched">Invalid email</small>
 
-    <button type="submit"  >Sign Up</button>
-    <button type="reset" (click)="handleClear(signupForm)">Clear All</button>
-</form>
+
+        <div class="form-control">
+            <label>Password </label>
+            <input type="password" name="password" #password="ngModel" ngModel
+                [ngClass]="{'invalid': password.invalid && password.touched}" required>
+        </div>
+
+        <small *ngIf="!password.valid && password.touched">Invalid password</small>
+
+        <div class="form-control">
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" #confirmPassword="ngModel"
+                [ngClass]="{'invalid': confirmPassword.invalid && confirmPassword.touched}" ngModel required>
+        </div>
+
+        <small *ngIf="!confirmPassword.valid && confirmPassword.touched">Invalid Confirm Password</small>
+
+        <div class="form-control">
+            <label for="gender">Gender</label>
+            <select name="gender" [ngModel]="defaultSelect" #gen="ngModel"
+                [ngClass]="{'invalid': gen.invalid && gen.touched}" required>
+                <option value="default">Select an option</option>
+                <option value="male" name="gender">Male</option>
+                <option value="female" name="gender">Female</option>
+                <option value="others" name="gender">Others</option>
+            </select>
+        </div>
+
+
+        <div class="form-control">
+            <label for="hobbies"> Hobbies (Optional)</label>
+            <input type="radio" value="music" id="hobbies" name="hobbies" ngModel>
+            <label>Music</label>
+            <input type="radio" value="movie" id="hobbies" name="hobbies" ngModel>
+            <label>Movie</label>
+            <input type="radio" value="code" id="hobbies" name="hobbies" ngModel>
+            <label>Code</label>
+        </div>
+
+        <div class="form-control">
+            <input type="checkbox" name="termsConditions" ngModel #termsCond="ngModel" required>
+            <label>Terms and conditions</label>
+        </div>
+
+        <!-- <small *ngIf="!termsCond.valid">Choose terms and conditions</small> -->
+
+
+
+        <button type="submit"  [disabled]="!signupForm.valid">Sign Up</button>
+        <button type="reset" (click)="handleClear(signupForm)">Clear All</button>
+    </form>
+</div>

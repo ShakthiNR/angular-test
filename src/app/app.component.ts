@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'signup-form';
+  title = 'Form Handling';
+  titleStyle = {
+    textAlign: 'center',
+    margin: '1rem',
+  }
+
+  constructor(){
+  }
 }

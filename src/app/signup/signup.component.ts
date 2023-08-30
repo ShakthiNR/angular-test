@@ -7,6 +7,7 @@ import {NgForm} from "@angular/forms"
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  defaultSelect: string = 'default';
 
   constructor() {}
 
