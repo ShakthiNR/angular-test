@@ -1,0 +1,29 @@
+<form #signupForm="ngForm" (submit)="handleSubmit(signupForm)">
+    <div>
+        <label>Username</label>
+        <input type="text" name="Username" ngModel>
+    </div>
+
+    <div>
+        <label>Email </label>
+        <input type="email" name="email" ngModel>
+    </div>
+
+    <div>
+        <label>Password </label>
+        <input type="password" name="password" ngModel>
+    </div>
+
+    <div>
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword"  ngModel>
+    </div>
+
+    <div>
+        <input type="checkbox" name="termsConditions" ngModel>
+        <label>Terms and conditions</label>
+    </div>
+
+    <button type="submit"  >Sign Up</button>
+    <button type="reset" (click)="handleClear(signupForm)">Clear All</button>
+</form>
