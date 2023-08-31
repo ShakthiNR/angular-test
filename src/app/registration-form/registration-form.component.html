@@ -1,0 +1,42 @@
+<div class="form-2">
+    <h2>Registration Form</h2>
+    <form (ngSubmit)="handleSubmit()" [formGroup]="registerForm">
+        <div>
+            <label for="username">User Name</label>
+            <input type="text" formControlName="username" id="username">
+        </div>
+
+        <small *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" >Username required</small>
+
+
+        <div>
+            <label for="email">User Email</label>
+            <input type="email" formControlName="email" id="email">
+        </div>
+        <small *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">Email address required</small>
+        <small *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched">Enter valid email address</small>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" id="password">
+        </div>
+        <small *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">Password required</small>
+        <small *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched">Password should be greater than 5 characters</small>
+
+
+        <div>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" id="confirmPassword">
+        </div>
+        <small *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched">Confirm password required</small>
+        <small *ngIf="registerForm.get('confirmPassword')?.hasError('MustMatch') && registerForm.get('confirmPassword')?.touched">Password mismatch</small>
+       
+       
+
+        <div>
+            <input type="submit" value="Register" [disabled]="registerForm.invalid" />
+            <input type="reset" value="Clear All" (click)="handleClearAll()"/>
+        </div>
+
+    </form>
+</div>
